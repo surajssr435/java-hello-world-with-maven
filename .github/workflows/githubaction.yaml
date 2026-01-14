@@ -29,4 +29,20 @@ jobs:
         with:
             name: maigolab-hello-artifact
             path: target/*.war
-    
+  deploy:
+    needs: checkout-repo
+    runs-on: self-hosted
+    steps:
+                  
+      - name: Download WAR artifact
+        uses: actions/download-artifact@v4
+        with:
+           name: maigolab-hello-artifact
+           path: ./artifact          
+      - name: Deploy WAR
+        run: |
+          sudo rm -rf /opt/tomcat/webapps/*.war
+          sudo rm -rf /opt/tomcat/webapps/*/
+          sudo cp ./artifact/*.war /opt/tomcat/webapps/
+          sudo systemctl restart tomcat
+            
