@@ -1,0 +1,12 @@
+name: Hello World CI
+on: workflow_dispatch
+jobs:
+  checkout-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout repository
+        uses: actions/checkout@v6
+      
+      - name: run shell commands
+        run: |
+          echo "git clone success..."
