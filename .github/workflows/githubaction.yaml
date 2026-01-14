@@ -24,4 +24,7 @@ jobs:
         run: |
            mvn clean install
            ls -lrth target/
+      - name: run java jar file
+        run: |
+          java -jar target/maigolab_hello-1.0.0.jar
     
