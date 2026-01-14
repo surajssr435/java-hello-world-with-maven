@@ -29,8 +29,24 @@ jobs:
         with:
             name: maigolab-hello-artifact
             path: target/*.war
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout repository
+        uses: actions/checkout@v6      
+      - name: run shell commands
+        run: |
+          echo "git clone success..."
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Build with Maven
+        run: |
+           mvn test
   deploy:
-    needs: checkout-repo
+    needs: testing
     runs-on: self-hosted
     steps:
                   
