@@ -10,3 +10,4 @@ jobs:
       - name: run shell commands
         run: |
           echo "git clone success..."
+          ls -lrtha
