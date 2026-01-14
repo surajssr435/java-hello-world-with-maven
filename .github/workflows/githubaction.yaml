@@ -24,7 +24,9 @@ jobs:
         run: |
            mvn clean install
            ls -lrth target/
-      - name: run java jar file
-        run: |
-          java -jar target/maigolab_hello-1.0.0.jar
+      - name: Upload WAR/JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+            name: maigolab-hello-artifact
+            path: target/*.war
     
